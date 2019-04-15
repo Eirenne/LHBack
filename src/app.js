@@ -7,6 +7,8 @@ var app = express();
 
 require('dotenv').config();
 
+let mongoose = require('./db/db')()
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
