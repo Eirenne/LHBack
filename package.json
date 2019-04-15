@@ -4,7 +4,8 @@
   "description": "Limehome code challenge back-end",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./src/bin/www --exec babel-node --presets babel-preset-env"
   },
   "author": "George Tsiklauri",
   "license": "ISC",
@@ -14,5 +15,11 @@
     "babel-loader": "^8.0.5",
     "babel-preset-env": "^1.7.0",
     "nodemon": "^1.18.11"
+  },
+  "dependencies": {
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "http-errors": "^1.7.2",
+    "morgan": "^1.9.1"
   }
 }
