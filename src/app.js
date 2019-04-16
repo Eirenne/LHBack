@@ -1,20 +1,28 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express'); 
+const logger = require('morgan');
+const bodyParser = require('body-parser');
+const environment = process.env.NODE_ENV; 
 
-var app = express();
+import routes from './modules/index.routes'
+
+const app = express();
 
 require('dotenv').config();
 
 let mongoose = require('./db/db')()
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
-// catch 404 and forward to error handler
+if (environment !== 'production') {
+  app.use(logger('dev'));
+}
+
+app.use('/api/v1', routes);
+
 app.use(function(req, res, next) {
   next(createError(404));
 });
