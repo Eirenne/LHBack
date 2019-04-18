@@ -29,7 +29,11 @@ if (environment !== 'production') {
   app.use(logger('dev'));
 }
 
-app.use(cors());
+app.use(cors({
+  credentials: true,
+  origin: function(origin, callback){
+    return callback(null, true);
+  }}));
 app.use('/api/v1', routes);
 
 app.use(function(req, res, next) {
