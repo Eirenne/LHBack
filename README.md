@@ -7,7 +7,7 @@ In the project directory, you can run:
 Installs Required dependencies
 
 Then rename .env.example file to .env
-It Holds all the secret keys we will ned in the app
+It Holds all the secret keys we will need in the app
 
 Then
 
