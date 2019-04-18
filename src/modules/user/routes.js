@@ -3,23 +3,18 @@ const userController = require('./user.controller');
 const router = require('express').Router();
 
 /**
- * POST /api/users
+ * POST /api/v1/users
  */
-// router.post('/', userController.create);
+router.post('/', userController.register);
 
-// /**
-//  * PUT /api/v1/users/:id
-//  */
-// router.put('/:id', userController.update);
+/**
+ * POST /api/v1/users/authenitcate
+ */
+router.post('/authenticate', userController.authenticate);
 
-// /**
-//  * DELETE /api/v1/users/:id
-//  */
-// router.delete('/:id', userController.deleteUser);
-
-// /**
-//  * GET /api/v1/users/:id/bookings
-//  */
-// router.get('/:id/bookings', userController.fetchBookings);
+/**
+ * GET /api/v1/users/:id/bookings
+ */
+router.get('/:id/bookings', userController.fetchBookings);
 
 module.exports = router;

@@ -2,7 +2,8 @@ const createError = require('http-errors');
 const express = require('express'); 
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-const cors = require('cors')
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
 const environment = process.env.NODE_ENV; 
 
 import routes from './modules/index.routes'
@@ -24,6 +25,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+app.use(cookieParser());
 
 if (environment !== 'production') {
   app.use(logger('dev'));

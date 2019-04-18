@@ -2,11 +2,15 @@
 import express from 'express';
 import userRoutes from './user/routes';
 import bookingRoutes from './booking/routes';
+import auth from '../middlewares/isAuthenticated'
 
 const router = express.Router()
 
-router.get('/ping', (req, res) =>
+
+router.get('/ping', auth.isAuthenticated, (req, res) => {
   res.send('OK')
+}
+  
 );
 
 // mount user routes at /users
