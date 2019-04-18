@@ -1,7 +1,7 @@
 
 
 class BookingController {
-    create (req, res) {
+    createBooking (req, res) {
         res.send("ok")
     }
 }

@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 import User from './user.model'
-
+import Booking from '../booking/booking.model'
 class UserController {
 
     register(req, res) {
