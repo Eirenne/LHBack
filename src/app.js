@@ -2,13 +2,21 @@ const createError = require('http-errors');
 const express = require('express'); 
 const logger = require('morgan');
 const bodyParser = require('body-parser');
+const cors = require('cors')
 const environment = process.env.NODE_ENV; 
 
 import routes from './modules/index.routes'
 
 const app = express();
 
+
+
 require('dotenv').config();
+
+
+app.get('/', function(req, res, next) {
+  res.send("OK")
+});
 
 let mongoose = require('./db/db')()
 
@@ -21,6 +29,7 @@ if (environment !== 'production') {
   app.use(logger('dev'));
 }
 
+app.use(cors());
 app.use('/api/v1', routes);
 
 app.use(function(req, res, next) {
