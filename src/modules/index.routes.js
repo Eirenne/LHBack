@@ -8,6 +8,7 @@ import places from '../services/placesApi'
 const router = express.Router()
 
 router.get('/ping', auth.isAuthenticated, (req, res) => {
+  console.log(req.decoded)
   res.json(places.getNearbyPlaces('hmm'))
 }
   
@@ -17,6 +18,6 @@ router.get('/ping', auth.isAuthenticated, (req, res) => {
 router.use('/users', userRoutes);
 
 // mount booking routes at /booking
-router.use('/booking', bookingRoutes);
+router.use('/bookings', bookingRoutes);
 
 export default router;

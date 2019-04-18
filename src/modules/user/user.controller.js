@@ -3,6 +3,9 @@ import User from './user.model'
 import Booking from '../booking/booking.model'
 class UserController {
 
+    /*
+        Regsiter new user
+    */
     register(req, res) {
         const { username, password } = req.body;
         const user = new User({ username, password });
@@ -17,6 +20,10 @@ class UserController {
         });
     }
 
+
+    /*
+        Authenticate user and return jwt token
+    */
     authenticate(req, res) {
         const { username, password } = req.body;
         User.findOne({ username }, function (err, user) {
@@ -56,17 +63,21 @@ class UserController {
         });
     }
 
+    /*
+        Fetch bookings by user id
+    */
     fetchBookings(req, res) {
-        // const { email, password } = req.body;
-        // const user = new User({ email, password });
-        // user.save(function(err) {
-        //     if (err) {
-        //     res.status(500)
-        //         .send("Error registering new user please try again.");
-        //     } else {
-        //     res.status(200).send("Welcome to the club!");
-        //     }
-        // });
+        const { user_id } = req.params
+        Booking.find({ user: user_id })
+            .populate('user')
+            .exec(function (err, bookings) {
+                if (err) {
+                    res.status(500)
+                        .send("Error fetching bookings");
+                } else {
+                    res.status(200).send(bookings);
+                }
+            })
     }
 }
 
